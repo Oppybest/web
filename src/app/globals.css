@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom font faces - TEMPORARILY DISABLED TO AVOID BLOCKING RENDERING */
+/*
+@font-face {
+  font-family: 'Jeko';
+  src: url('https://ext.same-assets.com/2413391883/2358523020.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jeko';
+  src: url('https://ext.same-assets.com/2413391883/2216397848.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jeko';
+  src: url('https://ext.same-assets.com/2413391883/3081983933.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jeko';
+  src: url('https://ext.same-assets.com/2413391883/2686863015.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+*/
+
+@layer base {
+  :root {
+    --background: 210 206 203; /* Light gray background like original */
+    --foreground: 29 29 36; /* Dark text for contrast */
+    --card: 255 255 255; /* White cards */
+    --card-foreground: 29 29 36;
+    --popover: 255 255 255;
+    --popover-foreground: 29 29 36;
+    --primary: 225 85 13; /* Orange primary color */
+    --primary-foreground: 255 255 255;
+    --secondary: 18 241 66; /* Green secondary */
+    --secondary-foreground: 255 255 255;
+    --muted: 126 124 125;
+    --muted-foreground: 146 151 153;
+    --accent: 227 109 35; /* Orange accent */
+    --accent-foreground: 255 255 255;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 126 124 125;
+    --input: 255 255 255;
+    --ring: 225 85 13;
+    --radius: 0.5rem;
+    --dark-section: 29 29 36; /* For dark sections like presale widget */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom animations */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(210, 85, 24, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(210, 85, 24, 0.8);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scroll-text {
+  animation: scroll-left 30s linear infinite;
+}
+
+.glow-effect {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
+
+.scale-in {
+  animation: scale-in 0.4s ease-out;
+}
+
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+/* Custom gradient backgrounds */
+.hero-gradient {
+  background: linear-gradient(135deg,
+    rgba(210, 206, 203, 1) 0%,
+    rgba(210, 206, 203, 0.95) 50%,
+    rgba(210, 206, 203, 1) 100%);
+}
+
+.card-gradient {
+  background: linear-gradient(145deg,
+    rgba(32, 35, 41, 0.8) 0%,
+    rgba(52, 56, 64, 0.6) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(210, 85, 24, 0.2);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #d25518 0%, #34c358 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(32, 35, 41, 1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(210, 85, 24, 0.6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(210, 85, 24, 0.8);
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300;
+  box-shadow: 0 4px 15px rgba(225, 85, 13, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(225, 85, 13, 0.5);
+  transform: translateY(-2px);
+  animation: glow 0.5s ease-in-out;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-300;
+  box-shadow: 0 4px 15px rgba(52, 195, 88, 0.3);
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 6px 20px rgba(52, 195, 88, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Loading spinner */
+.spinner {
+  border: 3px solid rgba(210, 85, 24, 0.3);
+  border-top: 3px solid #d25518;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Video overlay */
+.video-overlay {
+  background: linear-gradient(45deg, rgba(210, 85, 24, 0.8), rgba(52, 195, 88, 0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.video-overlay:hover {
+  opacity: 0.9;
+}
+
+/* Enhanced hover effects */
+.hover-glow:hover {
+  animation: glow 0.3s ease-in-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: rgb(var(--primary));
+  text-shadow: 0 0 8px rgba(var(--primary), 0.6);
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(var(--primary), 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Animation delays for sparkle effects */
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+.animation-delay-700 {
+  animation-delay: 700ms;
+}
+
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
+
+.animation-delay-900 {
+  animation-delay: 900ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+.animation-delay-1100 {
+  animation-delay: 1100ms;
+}
+
+.animation-delay-1200 {
+  animation-delay: 1200ms;
+}
+
+/* Responsive text */
+@media (max-width: 768px) {
+  .responsive-text-xl {
+    font-size: 1.5rem;
+  }
+
+  .responsive-text-2xl {
+    font-size: 1.75rem;
+  }
+
+  .responsive-text-3xl {
+    font-size: 2rem;
+  }
+
+  .responsive-text-4xl {
+    font-size: 2.5rem;
+  }
+}
